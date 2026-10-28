@@ -1,186 +1,407 @@
+/* ─── Page Shell ─── */
 .page {
-  --gray-rgb: 0, 0, 0;
-  --gray-alpha-200: rgba(var(--gray-rgb), 0.08);
-  --gray-alpha-100: rgba(var(--gray-rgb), 0.05);
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-
-  display: grid;
-  grid-template-rows: 20px 1fr 20px;
-  align-items: center;
-  justify-items: center;
-  min-height: 100svh;
-  padding: 80px;
-  gap: 64px;
-  font-synthesis: none;
-}
-
-@media (prefers-color-scheme: dark) {
-  .page {
-    --gray-rgb: 255, 255, 255;
-    --gray-alpha-200: rgba(var(--gray-rgb), 0.145);
-    --gray-alpha-100: rgba(var(--gray-rgb), 0.06);
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-  }
-}
-
-.main {
+  min-height: 100vh;
   display: flex;
   flex-direction: column;
-  gap: 32px;
-  grid-row-start: 2;
 }
 
-.main ol {
-  font-family: var(--font-geist-mono);
-  padding-left: 0;
-  margin: 0;
-  font-size: 14px;
-  line-height: 24px;
-  letter-spacing: -0.01em;
-  list-style-position: inside;
+/* ─── Header / Nav ─── */
+.header {
+  padding: 32px 48px;
+  animation: fadeIn 0.8s ease-out both;
 }
 
-.main li:not(:last-of-type) {
-  margin-bottom: 8px;
-}
-
-.main code {
-  font-family: inherit;
-  background: var(--gray-alpha-100);
-  padding: 2px 4px;
-  border-radius: 4px;
-  font-weight: 600;
-}
-
-.ctas {
+.headerInner {
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-bottom: 24px;
+  border-bottom: 1px solid var(--border);
+}
+
+.logo {
+  height: 160px !important;
+  width: auto !important;
+  object-fit: contain;
+}
+
+.headerTag {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* ─── Main Content ─── */
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 60px 48px 80px;
+  max-width: 900px;
+}
+
+.heading {
+  font-family: var(--font-sans);
+  font-size: clamp(56px, 8vw, 96px);
+  font-weight: 700;
+  line-height: 1.02;
+  letter-spacing: -2px;
+  color: var(--fg-primary);
+  margin-bottom: 56px;
+  animation: fadeInUp 1s ease-out 0.2s both;
+}
+
+/* ─── Contact Lines ─── */
+.contactList {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+.contactItem {
+  display: flex;
+  align-items: flex-start;
   gap: 16px;
 }
 
-.ctas a {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  font-family: var(--font-geist-sans);
-  border: 1px solid transparent;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
-}
-
-a.primary {
-  background: var(--foreground);
-  color: var(--background);
-  gap: 8px;
-}
-
-a.secondary {
-  border-color: var(--gray-alpha-200);
-  min-width: 180px;
-}
-
-button.secondary {
-  appearance: none;
-  border-radius: 128px;
-  height: 48px;
-  padding: 0 20px;
-  font-family: var(--font-geist-sans);
-  border: 1px solid transparent;
-  transition: background 0.2s, color 0.2s, border-color 0.2s;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 16px;
-  line-height: 20px;
-  font-weight: 500;
-  background: transparent;
-  border-color: var(--gray-alpha-200);
-  min-width: 180px;
-}
-
-.footer {
-  font-family: var(--font-geist-sans);
-  grid-row-start: 3;
-  display: flex;
-  gap: 24px;
-}
-
-.footer a {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.footer img {
+.contactDash {
+  display: inline-block;
+  width: 32px;
+  height: 2px;
+  background: var(--accent);
+  margin-top: 9px;
   flex-shrink: 0;
+  animation: expandWidth 0.6s ease-out 0.8s both;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
-  }
-
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
-  }
-
-  .footer a:hover {
-    text-decoration: underline;
-    text-underline-offset: 4px;
-  }
+.contactLabel {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fg-secondary);
+  line-height: 1.7;
 }
 
-@media (max-width: 600px) {
-  .page {
-    padding: 32px;
-    padding-bottom: 80px;
+.contactLabel a {
+  transition: color 0.3s ease;
+}
+
+.contactLabel a:hover {
+  color: var(--accent);
+}
+
+/* ─── CTA Button ─── */
+.ctaSection {
+  margin-top: 56px;
+  animation: fadeInUp 1s ease-out 0.7s both;
+}
+
+.ctaButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background: var(--fg-primary);
+  color: var(--bg-primary);
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  border: none;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.ctaButton::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.ctaButton:hover {
+  background: #2a2722;
+  transform: translateY(-1px);
+}
+
+.ctaButton:hover::after {
+  transform: scaleX(1);
+}
+
+.ctaArrow {
+  transition: transform 0.3s ease;
+  font-size: 16px;
+}
+
+.ctaButton:hover .ctaArrow {
+  transform: translateX(4px);
+}
+
+/* ─── Presentation Modal Overlay ─── */
+.modalOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(26, 24, 21, 0.6);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.3s ease-out both;
+  padding: 24px;
+}
+
+.modal {
+  background: var(--bg-primary);
+  border: 1px solid var(--border);
+  padding: 48px;
+  max-width: 480px;
+  width: 100%;
+  position: relative;
+  animation: fadeInUp 0.4s ease-out both;
+}
+
+.modalClose {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  font-size: 24px;
+  color: var(--fg-muted);
+  cursor: pointer;
+  width: 36px;
+  height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s ease;
+  line-height: 1;
+}
+
+.modalClose:hover {
+  color: var(--fg-primary);
+}
+
+.modalTitle {
+  font-family: var(--font-sans);
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  color: var(--fg-primary);
+  margin-bottom: 8px;
+}
+
+.modalSubtitle {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--fg-muted);
+  margin-bottom: 36px;
+  line-height: 1.6;
+}
+
+.formGroup {
+  margin-bottom: 24px;
+}
+
+.formLabel {
+  display: block;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--fg-secondary);
+  margin-bottom: 10px;
+}
+
+.formInput {
+  width: 100%;
+  padding: 14px 16px;
+  background: transparent;
+  border: 1px solid var(--border-strong);
+  font-family: var(--font-mono);
+  font-size: 14px;
+  color: var(--fg-primary);
+  outline: none;
+  transition: border-color 0.3s ease;
+}
+
+.formInput::placeholder {
+  color: var(--fg-muted);
+}
+
+.formInput:focus {
+  border-color: var(--accent);
+}
+
+.submitButton {
+  width: 100%;
+  padding: 16px;
+  background: var(--fg-primary);
+  color: var(--bg-primary);
+  border: none;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.submitButton:hover:not(:disabled) {
+  background: #2a2722;
+}
+
+.submitButton:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.submitButton::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.submitButton:hover:not(:disabled)::after {
+  transform: scaleX(1);
+}
+
+/* Success / Error states */
+.successMessage {
+  text-align: center;
+  padding: 24px 0;
+}
+
+.successIcon {
+  font-size: 48px;
+  margin-bottom: 16px;
+  display: block;
+}
+
+.successTitle {
+  font-family: var(--font-sans);
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--fg-primary);
+  margin-bottom: 8px;
+}
+
+.successText {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: var(--fg-muted);
+  line-height: 1.6;
+}
+
+.errorText {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: #c0392b;
+  margin-top: 8px;
+}
+
+/* ─── Footer ─── */
+.footer {
+  padding: 48px 48px;
+  border-top: 1px solid var(--border);
+  animation: fadeIn 0.8s ease-out 1s both;
+}
+
+.footerInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footerLogo {
+  height: 28px !important;
+  width: auto !important;
+  object-fit: contain;
+  opacity: 0.6;
+}
+
+.footerText {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--fg-muted);
+}
+
+/* ─── Responsive ─── */
+@media (max-width: 768px) {
+  .header {
+    padding: 24px;
+  }
+
+  .headerTag {
+    display: none;
   }
 
   .main {
-    align-items: center;
+    padding: 40px 24px 60px;
   }
 
-  .main ol {
-    text-align: center;
+  .heading {
+    font-size: clamp(40px, 10vw, 64px);
+    margin-bottom: 40px;
+    letter-spacing: -1px;
   }
 
-  .ctas {
-    flex-direction: column;
+  .contactList {
+    gap: 16px;
   }
 
-  .ctas a {
-    font-size: 14px;
-    height: 40px;
-    padding: 0 16px;
+  .ctaSection {
+    margin-top: 40px;
   }
 
-  a.secondary {
-    min-width: auto;
+  .ctaButton {
+    padding: 14px 24px;
+    font-size: 11px;
+    width: 100%;
+    justify-content: center;
+  }
+
+  .modal {
+    padding: 32px 24px;
   }
 
   .footer {
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
+    padding: 32px 24px;
   }
-}
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
+  .footerInner {
+    flex-direction: column;
+    gap: 16px;
   }
 }

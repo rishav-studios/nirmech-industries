@@ -1,13 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Outfit:wght@300;400;500;600;700;800&display=swap');
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --bg-primary: #f4f2ed;
+  --bg-secondary: #eae7e0;
+  --bg-dark: #1a1815;
+  --fg-primary: #1a1815;
+  --fg-secondary: #5a5650;
+  --fg-muted: #8a847c;
+  --accent: #b07d3b;
+  --accent-light: #c99b56;
+  --accent-dark: #8e6430;
+  --border: rgba(26, 24, 21, 0.1);
+  --border-strong: rgba(26, 24, 21, 0.2);
+  --font-sans: 'Outfit', var(--font-geist-sans), system-ui, -apple-system, sans-serif;
+  --font-mono: 'Inter', var(--font-geist-mono), 'SF Mono', 'Fira Code', monospace;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 html,
@@ -17,14 +37,10 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--fg-primary);
+  background: var(--bg-primary);
+  line-height: 1.6;
 }
 
 a {
@@ -32,19 +48,45 @@ a {
   text-decoration: none;
 }
 
-.imgDark {
-  display: none;
+::selection {
+  background: var(--accent);
+  color: #fff;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
+/* Smooth fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
   }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 
-  .imgLight {
-    display: none;
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
   }
-  .imgDark {
-    display: unset;
+  to {
+    opacity: 1;
+    transform: translateX(0);
   }
+}
+
+@keyframes expandWidth {
+  from { width: 0; }
+  to { width: 32px; }
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
 }
