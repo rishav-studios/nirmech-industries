@@ -2,25 +2,52 @@
 
 import Image from "next/image";
 import { useState } from "react";
+import axios, { isAxiosError } from "axios";
 import styles from "./page.module.css";
 
 export default function Home() {
   const [showModal, setShowModal] = useState(false);
   const [email, setEmail] = useState("");
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
+  const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!email) return;
 
     setStatus("sending");
+    setErrorMessage("");
 
-    // Simulate sending — replace with actual API call
     try {
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const response = await axios.post<{
+        success: boolean;
+        message?: string;
+      }>("/api/request-presentation", { email });
+
+      if (response.data && response.data.success === false) {
+        throw new Error(
+          response.data.message || "Failed to send presentation request. Please try again."
+        );
+      }
+
       setStatus("sent");
-    } catch {
+    } catch (err) {
       setStatus("error");
+      if (isAxiosError(err)) {
+        const serverMessage =
+          (err.response?.data as { message?: string } | undefined)?.message;
+        setErrorMessage(
+          serverMessage ||
+            err.message ||
+            "Failed to send presentation request. Please try again."
+        );
+      } else {
+        setErrorMessage(
+          err instanceof Error
+            ? err.message
+            : "Failed to send presentation request. Please try again."
+        );
+      }
     }
   };
 
@@ -28,6 +55,7 @@ export default function Home() {
     setShowModal(false);
     setEmail("");
     setStatus("idle");
+    setErrorMessage("");
   };
 
   return (
@@ -37,7 +65,7 @@ export default function Home() {
         <div className={styles.headerInner}>
           <Image
             className={styles.logo}
-            src="/logo.jpeg"
+            src="/logo.svg"
             alt="Nirmech Industries"
             width={160}
             height={40}
@@ -160,7 +188,7 @@ export default function Home() {
 
                   {status === "error" && (
                     <p className={styles.errorText}>
-                      Something went wrong. Please try again.
+                      {errorMessage || "Something went wrong. Please try again."}
                     </p>
                   )}
 
