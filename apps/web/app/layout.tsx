@@ -10,7 +10,7 @@ const googleSansFlex = Google_Sans_Flex({
 
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || "https://nirmech.com"),
-  title: "Nirmech Industries — Under Construction",
+  title: "Nirmech Industries — Precision Turned Components Manufacturer",
   description:
     "Nirmech Industries, based in Jamnagar, Gujarat, India. Our new website is under construction. Contact us at +91 95106 26066.",
   keywords: ["Nirmech Industries", "Jamnagar", "GIDC", "Gujarat", "manufacturing"],

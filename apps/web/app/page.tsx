@@ -1,8 +1,8 @@
 "use client";
 
+import axios, { isAxiosError } from "axios";
 import Image from "next/image";
 import { useState } from "react";
-import axios, { isAxiosError } from "axios";
 import styles from "./page.module.css";
 
 export default function Home() {
@@ -38,8 +38,8 @@ export default function Home() {
           (err.response?.data as { message?: string } | undefined)?.message;
         setErrorMessage(
           serverMessage ||
-            err.message ||
-            "Failed to send presentation request. Please try again."
+          err.message ||
+          "Failed to send presentation request. Please try again."
         );
       } else {
         setErrorMessage(
@@ -126,13 +126,7 @@ export default function Home() {
       {/* Footer */}
       <footer className={styles.footer}>
         <div className={styles.footerInner}>
-          <Image
-            className={styles.footerLogo}
-            src="/logo.jpeg"
-            alt="Nirmech Industries"
-            width={120}
-            height={28}
-          />
+
           <span className={styles.footerText}>
             © {new Date().getFullYear()} Nirmech Industries. All rights reserved.
           </span>

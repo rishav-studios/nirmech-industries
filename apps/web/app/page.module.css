@@ -20,7 +20,7 @@
 }
 
 .logo {
-  height: 52px !important;
+  height: 40px;
   width: auto !important;
   object-fit: contain;
 }
@@ -403,5 +403,9 @@
   .footerInner {
     flex-direction: column;
     gap: 16px;
+  }
+
+  .logo {
+    height: 32px;
   }
 }
